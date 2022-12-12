@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
+import requests
 
 def create_and_editing(filename, content):
   file = open(filename, '+w')
@@ -15,7 +17,8 @@ def create_react_app(react_app_name, creation_mode):
   if creation_mode == '1':
     generate_default_template()
   if creation_mode == '2':
-    generate_custom_template()
+    generate_default_template()
+  #   generate_custom_template()
   
 def generate_default_template():
   folders = ['components', 'pages', 'config', 'assets', 'routes', 'utils']
@@ -36,8 +39,16 @@ def remove_default_files():
   os.remove('src/setupTests.js')
   os.remove('src/App.test.js')
   os.remove('src/logo.svg')
+
+def create_repo(reponame):
+  load_dotenv()
+  url = 'https://api.github.com/user/repos'
+  token = os.environ['GITHUB_TOKEN']
+  headers = {'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json'}
+  requests.post(url, json={'name': reponame}, headers=headers)
   
 def git_init(reponame):
+  create_repo(reponame)
   os.system('git init')
   os.system('git add .')
   os.system('git commit -m "Initial commit"')
@@ -45,18 +56,17 @@ def git_init(reponame):
   os.system('git remote add origin git@github.com:galenomoon/'+ reponame +'.git')
   os.system('git push -u origin master')
 
+# ======================
+
 react_app_name = input('Enter the name of the react app: ')
 creation_mode = input('Enter the creation mode: \n1) Default\n2) Custom\n[1/2]: ')
 after_creation_mode = input('After creation: \n1) Start app\n2) Open code\n3) Both\n4) None\n[1/2/3/4]: ')
-connect_git = input('Connect to git? [y/n]: ')
-
-# ======================
+connect_git = input('Connect to git? It will create a repo with the same name as the react app. \n[y/n]: ')
 
 create_react_app(react_app_name + '-react', creation_mode)
 remove_default_files()
 
 if connect_git == 'y':
-  reponame = input('Enter the name of the repository: ')
-  git_init(reponame)
+  git_init(react_app_name + '-react')
 
 after_creation(after_creation_mode)
