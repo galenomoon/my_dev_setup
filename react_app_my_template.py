@@ -1,4 +1,5 @@
 import os
+import requests
 
 def create_and_editing(filename, content):
   file = open(filename, '+w')
@@ -36,8 +37,15 @@ def remove_default_files():
   os.remove('src/setupTests.js')
   os.remove('src/App.test.js')
   os.remove('src/logo.svg')
+
+def create_repo(reponame):
+  url = 'https://api.github.com/user/repos'
+  token = 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOcQt9mywjgjMTbCWncGQdLUKd+o5pziIRHN9zOMM+Lz'
+  headers = {"Authorization": "Bearer " + token, "Accept": "application/vnd.github+json", "Content-Type": "application/json", "X-GitHub-Api-Version": "2022-11-28"}
+  requests.post(url, json={'name': reponame}, headers=headers)
   
 def git_init(reponame):
+  create_repo(reponame)
   os.system('git init')
   os.system('git add .')
   os.system('git commit -m "Initial commit"')
@@ -56,7 +64,7 @@ create_react_app(react_app_name + '-react', creation_mode)
 remove_default_files()
 
 if connect_git == 'y':
-  reponame = input('Enter the name of the repository: ')
-  git_init(reponame)
+  # reponame = input('Enter the name of the repository: ')
+  git_init(react_app_name + '-react')
 
 after_creation(after_creation_mode)
