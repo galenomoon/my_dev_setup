@@ -10,7 +10,7 @@ def create_and_editing(filename, content):
 
 def create_default_files():
   create_and_editing('.env', 'REACT_APP_API_URL=http://localhost:3000')
-  create_and_editing('.gitignore', '.env')
+  create_and_editing('.gitignore', '.env\n/node_modules')
 
 def create_react_app(react_app_name, creation_mode = '1'):
   os.system('npx create-react-app '+ react_app_name)
