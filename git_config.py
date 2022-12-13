@@ -1,8 +1,7 @@
 from methods import create_and_editing
-from setup import initialize
+from initializer import initialize
 from termcolor import colored
 
-# runnig the script
 initialize()
 print('To connect to git, you need:')
 print('1) to have git installed on your computer. To install git, go to https://git-scm.com/downloads')

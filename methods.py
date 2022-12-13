@@ -8,26 +8,26 @@ def create_and_editing(filename, content):
   file.write(content)
   file.close()
 
-def create_env_file():
+def create_default_files():
   create_and_editing('.env', 'REACT_APP_API_URL=http://localhost:3000')
+  create_and_editing('.gitignore', '.env')
 
-def create_react_app(react_app_name, creation_mode):
+def create_react_app(react_app_name, creation_mode = '1'):
   os.system('npx create-react-app '+ react_app_name)
   os.chdir(react_app_name)
-  create_env_file()
+  create_default_files()
   if creation_mode == '1':
     generate_default_template()
   if creation_mode == '2':
-    generate_default_template()
-    # generate_custom_template()
+    generate_custom_template()
   
 def generate_default_template():
   folders = ['components', 'pages', 'config', 'assets', 'routes', 'utils']
   for folder in folders:
     os.mkdir('src/' + folder)
 
-def generate_custom_template(folders):
-  # custom folders
+def generate_custom_template():
+  print('Work in progress 🚧')
   return
 
 def after_creation(after_creation_mode):
@@ -39,7 +39,7 @@ def after_creation(after_creation_mode):
 def remove_default_files():
   os.remove('src/setupTests.js')
   os.remove('src/App.test.js')
-  os.remove('src/logo.svg')
+  # os.remove('src/logo.svg')
 
 def create_repo(reponame, is_public=True):
   load_dotenv()
@@ -61,4 +61,3 @@ def git_connection(reponame, is_public=True):
   os.system('git branch -M master')
   os.system(f"git remote add origin git@github.com:{username}/{reponame}.git")
   os.system('git push -u origin master')
-  

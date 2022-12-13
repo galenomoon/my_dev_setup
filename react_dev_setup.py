@@ -1,6 +1,8 @@
+#!usr/bin/python3
+
 import os
 from termcolor import colored
-from setup import initialize
+from initializer import initialize
 from methods import create_react_app, remove_default_files, git_connection, after_creation
 
 initialize()
@@ -8,9 +10,9 @@ initialize()
 print('Enter the name of the', colored('react app: ', 'green'), end='')
 react_app_name = input()
 
-print('-' * 25)
+# print('-' * 25)
 
-creation_mode = input('Enter the creation mode: \n1) Default\n2) Custom\n[1/2]: ')
+# creation_mode = input('Enter the creation mode: \n1) Default\n2) Custom\n[1/2]: ')
 
 print('-' * 25)
 
@@ -25,7 +27,7 @@ print(colored("Please wait... I'm generating your app...", 'green'))
 
 print('-' * 25)
 
-create_react_app(react_app_name + '-react', creation_mode)
+create_react_app(react_app_name + '-react')
 remove_default_files()
 
 if create_git == 'y':
