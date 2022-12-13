@@ -13,7 +13,7 @@ class DevSetupCLI:
     self.parser = argparse.ArgumentParser(
       prog='dev_setup',
       description='Dev Setup CLI',
-      epilog='Developed by: @galenomoon - https://github,com/galenomoon',
+      epilog='Developed by: @galenomoon - https://github.com/galenomoon',
       usage='%(prog)s [options] [command] [command options]')
     self.parser.version = self.CLI_VERSION
     self.parser.add_argument('-v', '--version', action='version')
