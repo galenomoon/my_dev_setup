@@ -3,7 +3,7 @@
 import os
 from termcolor import colored
 from initializer import initialize
-from methods import create_react_app, remove_default_files, git_connection, after_creation
+from methods import create_react_app, remove_default_files, git_connection, after_creation, install_libs
 
 class ReactDevSetup:
 
@@ -34,6 +34,7 @@ class ReactDevSetup:
     print('-' * 25)
 
     create_react_app(react_app_name + '-react')
+    install_libs()
     remove_default_files()
 
     if create_git == 'y':

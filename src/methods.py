@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from termcolor import colored
+from templates.templates import Templates
 import requests
 
 def create_and_editing(filename, content):
@@ -11,15 +12,35 @@ def create_and_editing(filename, content):
 def create_default_files():
   create_and_editing('.env', 'REACT_APP_API_URL=http://localhost:3000')
   create_and_editing('.gitignore', '.env\n/node_modules')
+  tailwind_setup()
+  os.chdir('config')
+  create_and_editing('api_client.js', Templates.api_client())
+  
+def install_libs():
+  libs = ['axios', 'react-icons', 'react-hot-toast']
+  for lib in libs:
+    print (f"Installing ", colored(f"{lib}", 'green'))
+    os.system(f"npm install {lib}")
+  
+def tailwind_setup():
+  os.system('npm install -D tailwindcss postcss autoprefixer')
+  os.system('npx tailwindcss init -p')
+  create_and_editing('tailwind.config.js', Templates.tailwind_config())
+  
+  os.chdir('src')
+  os.remove('index.css')
+  create_and_editing('index.css', Templates.index_css())
+  os.chdir('./')
+  
 
 def create_react_app(react_app_name, creation_mode = '1'):
   os.system('npx create-react-app '+ react_app_name)
   os.chdir(react_app_name)
-  create_default_files()
   if creation_mode == '1':
     generate_default_template()
   if creation_mode == '2':
     generate_custom_template()
+  create_default_files()
   
 def generate_default_template():
   folders = ['components', 'pages', 'config', 'assets', 'routes', 'utils']
@@ -37,9 +58,22 @@ def after_creation(after_creation_mode):
     os.system('code .')
 
 def remove_default_files():
-  os.remove('src/setupTests.js')
-  os.remove('src/App.test.js')
-  # os.remove('src/logo.svg')
+  os.chdir('../')
+  print('-' * 12)
+  os.system('pwd')
+  print('-' * 12)
+  os.remove('App.js')
+  create_and_editing('App.js', Templates.app_js())
+  
+  os.remove('index.js')
+  create_and_editing('index.js', Templates.index_js())
+  
+  os.remove('App.css')
+  os.remove('App.test.js')
+  os.remove('logo.svg')
+  os.remove('reportWebVitals.js')
+  os.remove('setupTests.js')
+  
 
 def create_repo(reponame, is_public=True):
   load_dotenv()
