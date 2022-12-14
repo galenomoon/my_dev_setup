@@ -34,7 +34,7 @@ class Templates:
   
   export default function App() {
     return (
-      <div className="flex w-full s-screen flex-col items-center justify-center">
+      <div className="flex w-full h-screen flex-col items-center justify-center">
         <h1 className="text-xl font-bold text-center text-gray-800">
           This app was created by DevSetup CLI 🎉
         </h1>
