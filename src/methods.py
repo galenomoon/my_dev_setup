@@ -17,7 +17,7 @@ def create_default_files():
   create_and_editing('api_client.js', Templates.api_client())
   
 def install_libs():
-  libs = ['axios', 'react-icons', 'react-hot-toast']
+  libs = ['axios', 'react-icons', 'react-hot-toast', 'react-router-dom']
   for lib in libs:
     print (f"Installing ", colored(f"{lib}", 'green'))
     os.system(f"npm install {lib}")
@@ -45,6 +45,16 @@ def generate_default_template():
   folders = ['components', 'pages', 'config', 'assets', 'routes', 'utils']
   for folder in folders:
     os.mkdir('src/' + folder)
+  
+  os.mkdir('src/pages/Home')
+  create_and_editing('src/pages/Home/index.js', Templates.home_index_js())
+
+  os.mkdir('src/pages/Auth')
+  create_and_editing('src/pages/Auth/index.js', Templates.auth_index_js())
+  
+  create_and_editing('src/routes/ApplicationRoutes.js', Templates.application_routes())
+  create_and_editing('src/routes/AuthenticatedRoutes.js', Templates.authenticated_routes())
+
 
 def generate_custom_template():
   print('Work in progress 🚧')
@@ -62,7 +72,6 @@ def remove_default_files():
   os.system('pwd')
   print('-' * 12)
   os.remove('App.js')
-  create_and_editing('App.js', Templates.app_js())
   
   os.remove('index.js')
   create_and_editing('index.js', Templates.index_js())
