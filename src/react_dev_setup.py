@@ -22,10 +22,10 @@ class ReactDevSetup:
 
     print('-' * 25)
 
-    after_creation_mode = input('After creation: \n1) Start app\n2) Open code\n3) Both\n4) None\n[1/2/3/4]: ')
+    after_creation_mode = input('After creation: \n1) Start app\n2) Open code\n3) Both\n[Press enter to skip]\n[1/2/3]: ')
 
     print('-' * 25)
-    create_git = input('Create a repo to git? It will create a repo with the same name as the react app. \n[y/n]: ')
+    create_git = input('Create a repo to git? It will create a repo with the same name as the react app. [Press enter to skip] \n[y/n]: ')
     if create_git == 'y': 
       is_public = input('Do you want to make your repository public? \n[y/n]: ')
 
