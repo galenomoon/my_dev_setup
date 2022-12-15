@@ -59,39 +59,24 @@ root.render(
 
   def index_css():
     return """
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
   """
   
   def tailwind_config():
     return """
-  module.exports = {
-    content: ["./src/**/*.{js,jsx,ts,tsx}"],
-    darkMode: "class",
-    theme: {
-      screens: {
-        sm: "320px",
-        md: "768px",
-      },
-      extend: {
-        colors: {
-          dark: {
-            background: {
-              base: "",
-              neutral: "",
-              primary: "",
-              secondary: "",
-              light: "",
-            },
-            typography: {
-              base: "",
-              primary: "",
-              secondary: "",
-              light: "",
-              danger: "",
-            },
-          },
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
+  theme: {
+    screens: {
+      sm: "320px",
+      md: "768px",
+    },
+    extend: {
+      colors: {
+        dark: {
           background: {
             base: "",
             neutral: "",
@@ -106,6 +91,21 @@ root.render(
             light: "",
             danger: "",
           },
+        },
+        background: {
+          base: "",
+          neutral: "",
+          primary: "",
+          secondary: "",
+          light: "",
+        },
+        typography: {
+          base: "",
+          primary: "",
+          secondary: "",
+          light: "",
+          danger: "",
+        },
       },
       keyframes: {
         "slide-in": {
