@@ -4,7 +4,7 @@ from git_config import GitConfig
 from react_dev_setup import ReactDevSetup
 
 class DevSetupCLI:
-  CLI_VERSION = '0.1.0'
+  CLI_VERSION = '0.1.3'
   
   def __init__(self):
     self.__run()
@@ -29,7 +29,7 @@ class DevSetupCLI:
       GitConfig()
     
     if self.args.install_requirements:
-      os.system("pip3 install -r requirements.txt")
+      os.system("pip3 install -r src/requirements.txt")
     
     if not self.args.react and not self.args.git_config and not self.args.install_requirements:
       self.parser.print_help()
