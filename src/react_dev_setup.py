@@ -38,7 +38,9 @@ class ReactDevSetup:
     remove_default_files()
 
     if create_git == 'y':
+      os.chdir('..')
       is_public = True if is_public == 'y' else False
+      print('-' * 25) 
       git_connection(react_app_name + '-react', is_public)
       print('-' * 25) 
       username = os.popen('git config user.name').read().replace("\n", "")

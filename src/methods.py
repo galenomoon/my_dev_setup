@@ -32,7 +32,6 @@ def tailwind_setup():
   create_and_editing('index.css', Templates.index_css())
   os.chdir('./')
   
-
 def create_react_app(react_app_name, creation_mode = '1'):
   os.system('npx create-react-app '+ react_app_name)
   os.chdir(react_app_name)
@@ -74,7 +73,6 @@ def remove_default_files():
   os.remove('reportWebVitals.js')
   os.remove('setupTests.js')
   
-
 def create_repo(reponame, is_public=True):
   load_dotenv()
   print('-' * 12)
